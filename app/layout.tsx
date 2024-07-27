@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/navbar";
+import SessionsProvider from "@/components/SessionsProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,22 +24,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
+      <SessionsProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <Header />
-          {children}
-        </body>
-      </ThemeProvider>
+          <body
+            className={cn(
+              "min-h-screen bg-background font-sans antialiased",
+              fontSans.variable
+            )}
+          >
+            <Header />
+            {children}
+          </body>
+        </ThemeProvider>
+      </SessionsProvider>
     </html>
   );
 }

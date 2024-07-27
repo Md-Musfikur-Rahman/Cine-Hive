@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button, Input, Label } from "@/components/ui";
+import AuthComponent from "./LonigButton";
 
 export function Dashboard() {
   return (
@@ -41,6 +42,9 @@ export function Dashboard() {
             </Button>
             <Button variant="outline" className="w-full">
               Login with Google
+            </Button>
+            <Button variant="outline" className="w-full">
+              <AuthComponent />
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

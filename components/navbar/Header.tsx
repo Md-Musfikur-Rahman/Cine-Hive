@@ -1,4 +1,4 @@
-import { CircleUser, Menu, Package2, Search } from "lucide-react";
+import { CircleUser, Menu, Search } from "lucide-react";
 
 import {
   Button,
@@ -16,6 +16,7 @@ import {
 
 import { ModeToggle } from "./ModeToggle";
 import NavLinks from "./NavLinks";
+import AuthComponent from "../authentication/LonigButton";
 
 const Header = () => {
   return (
@@ -57,7 +58,9 @@ const Header = () => {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem>
+              <AuthComponent />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <ModeToggle />

@@ -3,7 +3,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div>
+    <div className="container mt-4">
       Cine Hive
       <Button>Click me </Button>
     </div>
