@@ -4,9 +4,9 @@ import MovieCard from "./MovieCard";
 
 const Movies = () => {
   return (
-    <div>
+    <div className="max-w-full overflow-auto">
       <h1>Now Playing</h1>
-      <div className="grid grid-cols-5 gap-3">
+      <div className="flex flex-row gap-5">
         {MovieData.map((movie: MovieCardProps, i) => (
           <MovieCard
             key={i}
