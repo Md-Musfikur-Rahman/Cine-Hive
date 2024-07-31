@@ -10,7 +10,7 @@ const MovieCard = ({
   release_date,
 }: MovieCardProps) => {
   return (
-    <div className="relative">
+    <div className="relative w-[179px]">
       <div className="border border-foreground rounded-xl z-0 ">
         <div className="w-44 h-fit rounded-xl">
           <Image
@@ -23,7 +23,7 @@ const MovieCard = ({
         </div>
       </div>
 
-      <div className="absolute bottom-[93px] -left-[3px] z-50 inline-block bg-background rounded-full">
+      <div className="absolute bottom-[95px] -left-[3px] z-50 inline-block bg-background rounded-full">
         <Average average={vote_average} />
       </div>
 
