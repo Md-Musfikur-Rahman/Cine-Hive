@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/navbar";
 import SessionsProvider from "@/components/SessionsProvider";
+import Footer from "@/components/footer/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
           >
             <Header />
             {children}
+            <Footer />
           </body>
         </ThemeProvider>
       </SessionsProvider>

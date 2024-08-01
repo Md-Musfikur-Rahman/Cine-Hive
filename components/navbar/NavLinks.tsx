@@ -14,13 +14,13 @@ const NavLinks = ({ className }: NavLinksProps) => {
         Cine Hive
       </Link>
       <Link
-        href="#"
+        href="/movies"
         className="text-muted-foreground transition-colors hover:text-foreground"
       >
         Movies
       </Link>
       <Link
-        href="#"
+        href="/tvshows"
         className="text-muted-foreground transition-colors hover:text-foreground whitespace-nowrap"
       >
         TV Shows
