@@ -1,20 +1,21 @@
 import Image from "next/image";
-import { MovieCardProps } from "@/lib/types";
+import { NowPlayingMovieCardProps } from "@/lib/types";
 import Average from "./Average";
 
 const MovieCard = ({
+  id,
   original_title,
   poster_path,
   title,
   vote_average,
   release_date,
-}: MovieCardProps) => {
+}: NowPlayingMovieCardProps) => {
   return (
     <div className="relative w-[179px]">
       <div className="border border-foreground rounded-xl z-0 ">
         <div className="w-44 h-fit rounded-xl">
           <Image
-            src={`${process.env.IMAGE_URl}${poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
             width={400}
             height={300}
@@ -30,6 +31,7 @@ const MovieCard = ({
       <div className="p-2">
         <h2 className="font-bold text-sm">{original_title}</h2>
         <h2 className="font-bold text-sm">{release_date}</h2>
+        <span className="hidden">{id}</span>
       </div>
     </div>
   );

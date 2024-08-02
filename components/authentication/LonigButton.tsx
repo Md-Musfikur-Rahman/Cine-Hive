@@ -14,7 +14,7 @@ export default function AuthComponent() {
   }
   return (
     <>
-      <button onClick={() => signIn()}>Log in</button>
+      <button onClick={() => signIn("github")}>Login with Github</button>
     </>
   );
 }

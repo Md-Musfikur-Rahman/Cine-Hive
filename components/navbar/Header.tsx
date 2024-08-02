@@ -1,3 +1,10 @@
+"use client";
+import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
+
+import { ModeToggle } from "./ModeToggle";
+import NavLinks from "./NavLinks";
+
 import { CircleUser, Menu, Search } from "lucide-react";
 
 import {
@@ -14,11 +21,9 @@ import {
   SheetTrigger,
 } from "@/components/ui";
 
-import { ModeToggle } from "./ModeToggle";
-import NavLinks from "./NavLinks";
-import AuthComponent from "../authentication/LonigButton";
-
 const Header = () => {
+  const { data: session } = useSession();
+
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <NavLinks className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6" />
@@ -59,7 +64,11 @@ const Header = () => {
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <AuthComponent />
+              {session ? (
+                <button onClick={() => signOut()}>Log out</button>
+              ) : (
+                <Link href="/user/login">Login </Link>
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

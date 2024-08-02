@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button, Input, Label } from "@/components/ui";
-import AuthComponent from "./LonigButton";
-
-export function Dashboard() {
+import AuthComponent from "@/components/authentication/LonigButton";
+const LoginPage = () => {
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid  lg:grid-cols-2 ">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -55,15 +54,17 @@ export function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block">
+      <div className="">
         <Image
-          src="/placeholder.svg"
+          src="/login.jpg"
           alt="Image"
           width="1920"
           height="1080"
-          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="h-full w-full object-cover"
         />
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

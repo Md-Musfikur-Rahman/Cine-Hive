@@ -1,11 +1,20 @@
-import Movies from "@/components/movies/Movies";
+import {
+  TrendingAll,
+  TrendingMovies,
+  TrendingTvShows,
+} from "@/components/trending";
 import React from "react";
 
 const Home = () => {
   return (
-    <div className="container mt-4">
+    <div className="container">
       <div>Hero Section</div>
-      <Movies />
+      {/* Trending ALL */}
+      <TrendingAll />
+      {/* Trending Movies */}
+      <TrendingMovies />
+      {/* Trending TV Shows */}
+      <TrendingTvShows />
       <div>TV Shows</div>
     </div>
   );

@@ -1,5 +1,5 @@
 import MovieData from "@/data/temo.json";
-import { MovieCardProps } from "@/lib/types";
+import { NowPlayingMovieCardProps } from "@/lib/types";
 import MovieCard from "./MovieCard";
 import {
   Carousel,
@@ -9,29 +9,28 @@ import {
   CarouselPrevious,
 } from "@/components/ui";
 
-const Movies = () => {
+const NowPlaying = () => {
   return (
-    <div className="max-w-full">
-      <h1 className="text-xl font-bold py-2">Now Playing</h1>
+    <div className="container max-w-full">
+      <div className="flex justify-between items-center my-4">
+        <h1 className="text-xl font-bold py-2">Now Playing</h1>
+
+        <div className="flex flex-row gap-2 border rounded-lg py-2 px-4">
+          <button type="button">Movies</button>
+          <button type="button">Tv Shows</button>
+        </div>
+      </div>
       <Carousel>
         <CarouselContent>
-          {MovieData.map((movie: MovieCardProps, i) => (
+          {MovieData.map((movie: NowPlayingMovieCardProps, i) => (
             <CarouselItem key={i} className="flex flex-row basis-auto">
               <MovieCard
-                adult={movie.adult}
-                backdrop_path={movie.backdrop_path}
-                genre_ids={movie.genre_ids}
                 id={movie.id}
-                original_language={movie.original_language}
                 original_title={movie.original_title}
-                overview={movie.overview}
-                popularity={movie.popularity}
                 poster_path={movie.poster_path}
                 release_date={movie.release_date}
                 title={movie.title}
-                video={movie.video}
                 vote_average={movie.vote_average}
-                vote_count={movie.vote_count}
               />
             </CarouselItem>
           ))}
@@ -43,4 +42,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default NowPlaying;
