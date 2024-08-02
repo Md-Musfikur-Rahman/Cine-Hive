@@ -54,8 +54,10 @@ const TrendingMovies = () => {
                 <TrendingMovieCard
                   id={movie.id}
                   original_title={movie.original_title}
+                  original_name={movie.original_name}
                   poster_path={movie.poster_path}
                   release_date={movie.release_date}
+                  first_air_date={movie.first_air_date}
                   title={movie.title}
                   vote_average={movie.vote_average}
                   media_type={movie.media_type}
@@ -75,8 +77,10 @@ const TrendingMovies = () => {
                 <TrendingMovieCard
                   id={movie.id}
                   original_title={movie.original_title}
+                  original_name={movie.original_name}
                   poster_path={movie.poster_path}
                   release_date={movie.release_date}
+                  first_air_date={movie.first_air_date}
                   title={movie.title}
                   vote_average={movie.vote_average}
                   media_type={movie.media_type}
