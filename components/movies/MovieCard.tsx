@@ -15,7 +15,7 @@ const MovieCard = ({
       <div className="border border-foreground rounded-xl z-0 ">
         <div className="w-44 h-fit rounded-xl">
           <Image
-            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${poster_path}`}
             alt={title}
             width={400}
             height={300}

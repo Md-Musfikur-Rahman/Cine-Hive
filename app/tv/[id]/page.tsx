@@ -34,9 +34,11 @@ const TvShowDetailsPage = () => {
   return (
     <div>
       <div className="w-full max-h-[80vh] mx-auto flex justify-center z-0 relative">
-        <img
+        <Image
           src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
           alt={data.name}
+          width={300}
+          height={400}
           className="w-full h-auto object-cover object-right "
         />
         <div className="absolute w-full h-[80vh] bg-background opacity-70 z-10">

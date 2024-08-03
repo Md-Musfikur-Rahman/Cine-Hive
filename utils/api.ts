@@ -5,7 +5,7 @@ type MediaType = "movie" | "tv";
 
 const Header = {
   accept: "application/json",
-  Authorization: process.env.API_Access_Token,
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_Access_Token}`,
 };
 
 export const getMovieLists = async (section: MediaType, listName: TimeType) => {
@@ -32,11 +32,7 @@ export const getTrending = async (section: SectionType, time: TimeType) => {
     method: "GET",
     url: `https://api.themoviedb.org/3/trending/${section}/${time}`,
     params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3OTFhODk3NmNiMzYwMDNmMzBhN2ZlYjkwMjNkODM0NiIsIm5iZiI6MTcyMjE4NTAxNy44Nzk3MjgsInN1YiI6IjY0ZTQzODVmNTI1OGFlMDBlYWEyMDUyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cWgqIhCN9257HAzA6eaTtoT3KYyaLa0OQC1rxmHN6BU",
-    },
+    headers: Header,
   };
 
   try {
@@ -45,6 +41,7 @@ export const getTrending = async (section: SectionType, time: TimeType) => {
     // console.table(data);
     return data; // return the data so you can use it elsewhere
   } catch (error) {
+    console.log("API Token:", process.env.NEXT_PUBLIC_API_Access_Token);
     console.error("Error fetching now playing movies:", error);
     throw error; // rethrow the error to handle it further up the chain
   }
@@ -55,11 +52,7 @@ export const getDetails = async (media_type: string, id: number) => {
     method: "GET",
     url: `https://api.themoviedb.org/3/${media_type}/${id}`,
     params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3OTFhODk3NmNiMzYwMDNmMzBhN2ZlYjkwMjNkODM0NiIsIm5iZiI6MTcyMjU5MTIxOS40MzcyNzcsInN1YiI6IjY0ZTQzODVmNTI1OGFlMDBlYWEyMDUyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hco9BI3_H6eRbtx0QVs1LockNvGXZyYhL3lluuZ-PeY",
-    },
+    headers: Header,
   };
 
   try {
