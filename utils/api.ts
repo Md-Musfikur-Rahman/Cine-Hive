@@ -1,4 +1,5 @@
 import axios from "axios";
+
 type SectionType = "all" | "movie" | "tv" | "person";
 type TimeType = "day" | "week";
 type MediaType = "movie" | "tv";
@@ -61,6 +62,26 @@ export const getDetails = async (media_type: string, id: number) => {
     // console.table(data);
     return data; // return the data so you can use it elsewhere
   } catch (error) {
+    console.error("Error fetching now playing movies:", error);
+    throw error; // rethrow the error to handle it further up the chain
+  }
+};
+
+export const getVedios = async (media_type: SectionType, id: number) => {
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${media_type}/${id}/videos`,
+    params: { language: "en-US" },
+    headers: Header,
+  };
+
+  try {
+    const response = await axios.request(options);
+    const data = response.data.results;
+    // console.table(data);
+    return data; // return the data so you can use it elsewhere
+  } catch (error) {
+    console.log("API Token:", process.env.NEXT_PUBLIC_API_Access_Token);
     console.error("Error fetching now playing movies:", error);
     throw error; // rethrow the error to handle it further up the chain
   }
