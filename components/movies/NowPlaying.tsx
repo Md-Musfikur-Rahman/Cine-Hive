@@ -1,4 +1,3 @@
-import MovieData from "@/data/temo.json";
 import { NowPlayingMovieCardProps } from "@/lib/types";
 import MovieCard from "./MovieCard";
 import {
@@ -22,18 +21,7 @@ const NowPlaying = () => {
       </div>
       <Carousel>
         <CarouselContent>
-          {MovieData.map((movie: NowPlayingMovieCardProps, i) => (
-            <CarouselItem key={i} className="flex flex-row basis-auto">
-              <MovieCard
-                id={movie.id}
-                original_title={movie.original_title}
-                poster_path={movie.poster_path}
-                release_date={movie.release_date}
-                title={movie.title}
-                vote_average={movie.vote_average}
-              />
-            </CarouselItem>
-          ))}
+          <CarouselItem className="flex flex-row basis-auto"></CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
