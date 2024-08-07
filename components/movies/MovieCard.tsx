@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { NowPlayingMovieCardProps } from "@/lib/types";
+import { TrendingProps } from "@/lib/types";
 import Average from "./Average";
+import Link from "next/link";
 
 const MovieCard = ({
   id,
@@ -9,11 +10,17 @@ const MovieCard = ({
   title,
   vote_average,
   release_date,
-}: NowPlayingMovieCardProps) => {
+  media_type,
+  first_air_date,
+  original_name,
+}: TrendingProps) => {
   return (
     <div className="relative w-[179px]">
       <div className="border border-foreground rounded-xl z-0 ">
-        <div className="w-44 h-fit rounded-xl">
+        <Link
+          href={`/${media_type == "tv" ? "tv" : "movie"}/${id}`}
+          className="w-44 h-fit rounded-xl"
+        >
           <Image
             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${poster_path}`}
             alt={title}
@@ -21,17 +28,20 @@ const MovieCard = ({
             height={300}
             className="rounded-xl"
           />
-        </div>
+        </Link>
       </div>
 
-      <div className="absolute bottom-[95px] -left-[3px] z-50 inline-block bg-background rounded-full">
+      <div className="absolute -mt-9  -left-[3px] z-50 inline-block bg-background rounded-full">
         <Average average={vote_average} />
       </div>
 
       <div className="p-2">
-        <h2 className="font-bold text-sm">{original_title}</h2>
-        <h2 className="font-bold text-sm">{release_date}</h2>
-        <span className="hidden">{id}</span>
+        <h2 className="font-bold text-sm">
+          {original_title} {original_name}
+        </h2>
+        <h2 className="font-bold text-sm">
+          {release_date} {first_air_date}
+        </h2>
       </div>
     </div>
   );

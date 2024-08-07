@@ -1,7 +1,15 @@
 import axios from "axios";
 
 type SectionType = "all" | "movie" | "tv" | "person";
-type TimeType = "day" | "week";
+type TimeType =
+  | "day"
+  | "week"
+  | "now_playing"
+  | "popular"
+  | "top_rated"
+  | "upcoming"
+  | "airing_today"
+  | "on_the_air";
 type MediaType = "movie" | "tv";
 
 const Header = {

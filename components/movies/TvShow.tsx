@@ -11,15 +11,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui";
 
-type cata = "now_playing" | "popular" | "top_rated" | "upcoming";
+type cata = "popular" | "top_rated" | "airing_today" | "on_the_air";
 
-const NowPlaying = ({ listName }: { listName: cata }) => {
+const TvShow = ({ listName }: { listName: cata }) => {
   const [movieData, setMovieData] = useState<TrendingProps[]>([]);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       try {
-        const data = await getMovieLists("movie", listName);
+        const data = await getMovieLists("tv", listName);
         setMovieData(data);
       } catch (error) {
         console.error("Failed to fetch trending movies:", error);
@@ -61,4 +61,4 @@ const NowPlaying = ({ listName }: { listName: cata }) => {
   );
 };
 
-export default NowPlaying;
+export default TvShow;
