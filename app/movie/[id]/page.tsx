@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getDetails } from "@/utils/api";
 import UserScore from "@/components/UserScore";
 import UserActions from "@/components/UserActions";
+import ShowTrailer from "@/components/ShowTrailer";
 
 const TvShowDetailsPage = () => {
   const [data, setData] = useState<MovieDetailsProps | null>(null);
@@ -67,8 +68,11 @@ const TvShowDetailsPage = () => {
                 User score <UserScore average={data.vote_average} />
               </div>
 
-              <div>
-                <UserActions />
+              <div className="flex flex-row gap-5 justify-start items-center">
+                <span>
+                  <UserActions />
+                </span>
+                <ShowTrailer />
               </div>
 
               <div>

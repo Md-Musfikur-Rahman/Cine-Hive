@@ -8,3 +8,4 @@ export * from "./label";
 export * from "./carousel";
 export * from "./tabs";
 export * from "./tooltip";
+export * from "./dialog";
