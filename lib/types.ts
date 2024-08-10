@@ -19,6 +19,13 @@ export interface TrendingProps {
   media_type: string;
 }
 
+export interface TrailerProps {
+  key: string;
+  site: string;
+  size: number;
+  id: string;
+}
+
 export interface TVShowDetailsProps {
   adult: boolean;
   backdrop_path: string | null;

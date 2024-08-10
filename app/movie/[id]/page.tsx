@@ -72,7 +72,7 @@ const TvShowDetailsPage = () => {
                 <span>
                   <UserActions />
                 </span>
-                <ShowTrailer />
+                <ShowTrailer id={data.id} />
               </div>
 
               <div>
