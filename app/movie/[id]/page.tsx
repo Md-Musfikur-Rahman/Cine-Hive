@@ -72,7 +72,7 @@ const TvShowDetailsPage = () => {
                 <span>
                   <UserActions />
                 </span>
-                <ShowTrailer id={data.id} />
+                <ShowTrailer id={data.id} media_type="movie" />
               </div>
 
               <div>

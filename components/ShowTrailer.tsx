@@ -8,9 +8,10 @@ import { getVedios } from "@/utils/api";
 
 interface ShowTrailerProps {
   id: number;
+  media_type: "movie" | "tv";
 }
 
-const ShowTrailer: React.FC<ShowTrailerProps> = ({ id }) => {
+const ShowTrailer: React.FC<ShowTrailerProps> = ({ id, media_type }) => {
   const [movieData, setMovieData] = useState<TrailerProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +19,7 @@ const ShowTrailer: React.FC<ShowTrailerProps> = ({ id }) => {
   useEffect(() => {
     const fetchMovieVideos = async () => {
       try {
-        const data = await getVedios("movie", id);
+        const data = await getVedios(media_type, id);
         setMovieData(data);
       } catch (error) {
         setError("Failed to fetch movie trailers.");
@@ -29,7 +30,7 @@ const ShowTrailer: React.FC<ShowTrailerProps> = ({ id }) => {
     };
 
     fetchMovieVideos();
-  }, [id]);
+  }, [id, media_type]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
