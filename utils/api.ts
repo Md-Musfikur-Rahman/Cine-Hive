@@ -37,6 +37,9 @@ export const getMovieLists = async (section: MediaType, listName: TimeType) => {
 };
 
 export const getTrending = async (section: SectionType, time: TimeType) => {
+  if (!process.env.NEXT_PUBLIC_API_Access_Token) {
+    throw new Error("API token not configured");
+  }
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/trending/${section}/${time}`,
@@ -92,5 +95,41 @@ export const getVedios = async (media_type: SectionType, id: number) => {
     console.log("API Token:", process.env.NEXT_PUBLIC_API_Access_Token);
     console.error("Error fetching now playing movies:", error);
     throw error; // rethrow the error to handle it further up the chain
+  }
+};
+
+export const getCredits = async (media_type: string, id: number) => {
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${media_type}/${id}/credits`,
+    params: { language: "en-US" },
+    headers: Header,
+  };
+
+  try {
+    const response = await axios.request(options);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching credits:", error);
+    throw error;
+  }
+};
+
+export const getSimilar = async (media_type: string, id: number) => {
+  const options = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${media_type}/${id}/similar`,
+    params: { language: "en-US", page: "1" },
+    headers: Header,
+  };
+
+  try {
+    const response = await axios.request(options);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching similar content:", error);
+    throw error;
   }
 };

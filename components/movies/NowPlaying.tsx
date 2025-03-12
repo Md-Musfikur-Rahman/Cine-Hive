@@ -15,19 +15,46 @@ type cata = "now_playing" | "popular" | "top_rated" | "upcoming";
 
 const NowPlaying = ({ listName }: { listName: cata }) => {
   const [movieData, setMovieData] = useState<TrendingProps[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const data = await getMovieLists("movie", listName);
         setMovieData(data);
       } catch (error) {
-        console.error("Failed to fetch trending movies:", error);
+        setError("Failed to fetch movies");
+        console.error("Failed to fetch movies:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchTrendingMovies();
   }, [listName]);
+
+  if (isLoading) {
+    return (
+      <div className="container max-w-full">
+        <div className="flex justify-between items-center my-4">
+          <h1 className="text-xl font-bold py-2">Loading...</h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container max-w-full">
+        <div className="flex justify-between items-center my-4">
+          <h1 className="text-xl font-bold py-2 text-red-500">{error}</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container max-w-full">

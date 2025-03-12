@@ -23,10 +23,11 @@ const TrendingMovieCard = ({
         >
           <Image
             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${poster_path}`}
-            alt={title}
+            alt={title || original_title || "Movie poster"}
             width={400}
             height={300}
             className="rounded-xl"
+            loading="lazy"
           />
         </Link>
       </div>

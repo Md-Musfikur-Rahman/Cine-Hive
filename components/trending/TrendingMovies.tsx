@@ -18,35 +18,62 @@ import { TrendingMovieCard } from ".";
 const TrendingMovies = () => {
   const [movieData, setMovieData] = useState<TrendingProps[]>([]);
   const [timeFrame, setTimeFrame] = useState<"day" | "week">("day");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const data = await getTrending("movie", timeFrame);
         setMovieData(data);
       } catch (error) {
+        setError("Failed to fetch trending movies");
         console.error("Failed to fetch trending movies:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchTrendingMovies();
   }, [timeFrame]);
 
+  if (isLoading) {
+    return (
+      <div className="container w-full">
+        <div className="flex justify-between items-center my-4">
+          <h1 className="text-xl font-bold py-2">Loading...</h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container w-full">
+        <div className="flex justify-between items-center my-4">
+          <h1 className="text-xl font-bold py-2 text-red-500">{error}</h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Tabs defaultValue="account" className="container w-full">
+    <Tabs defaultValue="day" className="container w-full">
       <div className="flex justify-between items-center my-4">
         <h1 className="text-xl font-bold py-2">Trending Movies</h1>
 
         <TabsList>
-          <TabsTrigger value="account" onClick={() => setTimeFrame("day")}>
+          <TabsTrigger value="day" onClick={() => setTimeFrame("day")}>
             Day
           </TabsTrigger>
-          <TabsTrigger value="password" onClick={() => setTimeFrame("week")}>
+          <TabsTrigger value="week" onClick={() => setTimeFrame("week")}>
             Week
           </TabsTrigger>
         </TabsList>
       </div>
-      <TabsContent value="account">
+      <TabsContent value="day">
         <Carousel>
           <CarouselContent>
             {movieData.map((movie: TrendingProps, i) => (
@@ -69,7 +96,7 @@ const TrendingMovies = () => {
           <CarouselNext />
         </Carousel>
       </TabsContent>
-      <TabsContent value="password">
+      <TabsContent value="week">
         <Carousel>
           <CarouselContent>
             {movieData.map((movie: TrendingProps, i) => (
